@@ -36,7 +36,18 @@ export class MembersService implements MembersServiceInt {
     async getMembers(): Promise<Member[]> {
         if (this.members.length <= 0) {
             this.members = await lastValueFrom(this.http.get<Member[]>('https://data.parliament.scot/api/members'));
+            // Sort members such that active ones are first
+            this.members.sort((a: Member, b: Member) => {
+                if (a.IsCurrent && !b.IsCurrent) {
+                    return -1;
+                } else if (!a.IsCurrent && b.IsCurrent) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
         }
+        console.log(this.members[0]);
         return this.members;
     }
 
@@ -76,7 +87,6 @@ export class MembersService implements MembersServiceInt {
     async getMemberDetails(id: number): Promise<Member | undefined> {
         const members = await this.getMembers();
         const member = members.find(member => member.PersonID === id);
-
         if (member === undefined) {
             return undefined;
         }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Gender } from 'src/app/enums/Gender';
 import { Member } from '../../interfaces/Member';
 
 @Component({
@@ -9,5 +10,7 @@ import { Member } from '../../interfaces/Member';
 export class MemberDetailComponent {
   @Input() member: Member | undefined;
 
-  constructor() { }
+  onImageError(event: any) {
+    event.target.src = this.member?.GenderTypeID == Gender.MALE ? 'assets/male.jpg' : 'assets/female.jpg';
+  }
 }

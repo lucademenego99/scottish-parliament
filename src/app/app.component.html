@@ -1,5 +1,12 @@
-<div class="w-full h-[60px] bg-[#ADADAD]">
-  <p>Navbar</p>
-</div>
+<div class="bg-gray-100">
+  <nav
+    class="w-full h-[100px] flex items-center justify-between py-3 bg-gray-900 text-gray-200 shadow-2xl shadow-black/50 shadow-red navbar"
+  >
+    <img src="assets/logo.webp" alt="parliament logo" class="ml-3 h-5/6" />
+    <a href="/" class="mr-12 text-lg">Members</a>
+  </nav>
 
-<router-outlet></router-outlet>
+  <div class="px-24 py-12 min-h-[calc(100vh-100px)]">
+    <router-outlet></router-outlet>
+  </div>
+</div>

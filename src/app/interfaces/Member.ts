@@ -10,8 +10,8 @@ export interface Member {
     BirthDateIsProtected: boolean;
     ParliamentaryName: string;
     PreferredName: string;
-    Gender: Gender;
-    isCurrent: boolean;
+    GenderTypeID: Gender;
+    IsCurrent: boolean;
     party: Party | undefined;
     websites: Website[] | undefined;
 }
