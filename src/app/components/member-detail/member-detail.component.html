@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <!-- check if member is undefined -->
-        <div *ngIf="member">
+        <div *ngIf="member; else loading">
             <h1>Member {{member.PersonID}}</h1>
             <p>{{member.party?.ActualName}}</p>
             <div *ngFor="let website of member.websites">
@@ -9,8 +9,8 @@
             </div>
             <img [src]="member.PhotoURL" class="img-responsive" />
         </div>
-        <div *ngIfElse="!member">
+        <ng-template #loading>
             <h1>Loading...</h1>
-        </div>
+        </ng-template>
     </div>
 </div>

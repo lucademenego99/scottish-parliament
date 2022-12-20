@@ -1,6 +1,6 @@
-<div *ngIf="member">
+<div *ngIf="member; else noMember">
     <a [routerLink]="['/member', member.PersonID]">{{member.ParliamentaryName}}</a>
 </div>
-<div *ngIfElse>
+<ng-template #noMember>
     <p>ERR</p>
-</div>
+</ng-template>

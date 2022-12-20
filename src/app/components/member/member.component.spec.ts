@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MemberDetailComponent } from '../member-detail/member-detail.component';
 
 import { MemberComponent } from './member.component';
 
@@ -8,7 +11,11 @@ describe('MemberComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MemberComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      declarations: [ MemberComponent, MemberDetailComponent ]
     })
     .compileComponents();
 
