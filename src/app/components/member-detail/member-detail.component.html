@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <!-- check if member is undefined -->
+        <div *ngIf="member">
+            <h1>Member {{member.PersonID}}</h1>
+            <p>{{member.party?.ActualName}}</p>
+            <div *ngFor="let website of member.websites">
+                <a [href]="website.WebURL">{{website.WebURL}}</a>
+            </div>
+            <img [src]="member.PhotoURL" class="img-responsive" />
+        </div>
+        <div *ngIfElse="!member">
+            <h1>Loading...</h1>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<div *ngIf="member">
+    <a [routerLink]="['/member', member.PersonID]">{{member.ParliamentaryName}}</a>
+</div>
+<div *ngIfElse>
+    <p>ERR</p>
+</div>
