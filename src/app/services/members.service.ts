@@ -77,11 +77,18 @@ export class MembersService implements MembersServiceInt {
         return websites.filter(website => website.PersonID === id);
     }
 
-    async getMemberParty(id: number): Promise<Party | undefined> {
-        const memberParties = await this.getMemberParties();
-        const partyID = memberParties.find(memberParty => memberParty.PersonID === id)?.PartyID;
+    async getMemberPartiesOfMember(id: number): Promise<MemberParty[] | undefined> {
+        if (this.memberParties.length <= 0) {
+            this.memberParties = await lastValueFrom(this.http.get<MemberParty[]>('https://data.parliament.scot/api/memberparties'));
+        }
+        // Get all memberparties with PersonID === id
+        const memberParties = this.memberParties.filter(memberParty => memberParty.PersonID === id);
         const parties = await this.getParties();
-        return parties.find(party => party.ID === partyID);
+        // For each memberParties object, add the corresponding party object
+        memberParties.forEach(memberParty => {
+            memberParty.party = parties.find(party => party.ID === memberParty.PartyID);
+        });
+        return memberParties;
     }
 
     async getMemberDetails(id: number): Promise<Member | undefined> {
@@ -91,8 +98,10 @@ export class MembersService implements MembersServiceInt {
             return undefined;
         }
 
-        const party = await this.getMemberParty(id);
-        member.party = party;
+        const parties = await this.getMemberPartiesOfMember(id);
+        member.parties = parties;
+
+        console.log("Parties:", member.parties);
 
         const websites = await this.getMemberWebsites(id);
         member.websites = websites;

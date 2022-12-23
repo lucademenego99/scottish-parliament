@@ -1,5 +1,5 @@
 import { Gender } from "../enums/Gender";
-import { Party } from "./Party";
+import { MemberParty } from "./MemberParty";
 import { Website } from "./Website";
 
 export interface Member {
@@ -12,6 +12,6 @@ export interface Member {
     PreferredName: string;
     GenderTypeID: Gender;
     IsCurrent: boolean;
-    party: Party | undefined;
+    parties: MemberParty[] | undefined;
     websites: Website[] | undefined;
 }

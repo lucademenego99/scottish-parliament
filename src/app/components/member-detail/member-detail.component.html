@@ -1,34 +1,70 @@
-<div *ngIf="member; else loading" class="w-full flex items-center justify-center">
-    <div [routerLink]="['/member', member.PersonID]" class="transition-all max-w-2xl w-full bg-gray-900 shadow-lg rounded-xl p-6">
+<div *ngIf="member; else fakeCard" class="w-full flex items-center justify-center">
+    <div [routerLink]="['/member', member.PersonID]"
+        class="transition-all max-w-2xl w-full bg-gray-900 shadow-lg rounded-xl p-6">
         <div class="flex flex-col ">
             <div class="relative h-62 w-full mb-3">
-                <img src="{{member.PhotoURL ? member.PhotoURL : member.GenderTypeID == 1 ? 'assets/female.jpg' : 'assets/male.jpg'}}" loading="lazy" (error)="onImageError($event)" alt="member image" class="w-full object-cover rounded-2xl aspect-square">
+                <img src="{{member.PhotoURL ? member.PhotoURL : member.GenderTypeID == 1 ? 'assets/female.jpg' : 'assets/male.jpg'}}"
+                    loading="lazy" (error)="onImageError($event)" alt="member image"
+                    class="w-full object-cover rounded-2xl aspect-square">
             </div>
-            <div class="flex-auto justify-evenly">
-                <div class="flex flex-wrap ">
-                    <div class="flex items-center w-full justify-between min-w-0 ">
-                        <h2
-                            class="text-xl font-semibold mr-auto text-gray-200 truncate">
-                            {{member.ParliamentaryName}}</h2>
-                        <div
-                            class="flex items-center {{member.IsCurrent ? 'bg-green-400' : 'bg-red-500'}} text-white text-xs px-2 py-1 ml-3 rounded-lg">
-                            {{member.IsCurrent ? 'Active' : 'Inactive'}}
-                        </div>
-                    </div>
-                    <p class="ml-[2px] text-lg text-gray-200 truncate">{{member.party?.ActualName}}</p>
+            <div class="relative flex-auto justify-evenly">
+                <div class="absolute top-2 right-2 flex flex-col gap-2">
+                    <p
+                        class="{{member.IsCurrent ? 'bg-green-400' : 'bg-red-500'}} text-white text-center text-xs px-2 py-1 rounded-lg">
+                        {{member.IsCurrent ? 'Active' : 'Inactive'}}</p>
+                    <p class="text-xs text-gray-400 bg-gray-700 rounded-full px-2 py-1 m-0">{{member.GenderTypeID == 1 ?
+                        'FEMALE' : member.GenderTypeID == 2 ? 'MALE': 'UNDISCLOSED'}}</p>
                 </div>
-                <div class="flex mt-6 mb-4 text-sm font-medium justify-between items-center">
-                        <p class="text-sm text-gray-400 bg-gray-700 rounded-full px-4 py-2 m-0">{{member.GenderTypeID == 1 ? 'FEMALE' : member.GenderTypeID == 2 ? 'MALE': 'UNDISCLOSED'}}</p>
+                <div class="flex flex-wrap ">
+                    <div class="flex flex-col items-start w-full min-w-0 ">
+                        <h2 class="text-xl font-semibold mr-auto text-gray-200 truncate">
+                            {{member.ParliamentaryName}}</h2>
+                        <p class="text-sm text-gray-400">{{member.BirthDate}}</p>
+                    </div>
                 </div>
 
-                <h4 class="text-white">Websites:</h4>
+                <h4 class="text-white mt-4">Parties:</h4>
+                <ul *ngFor="let memberParty of member.parties" class="text-white list-disc ml-9">
+                    <li class="text-sm">{{memberParty.party?.ActualName}} | From {{memberParty.ValidFromDate}}
+                        {{memberParty.ValidUntilDate ? ('To ' + memberParty.ValidUntilDate) : '' }}</li>
+                </ul>
+
+                <h4 class="text-white mt-4">Websites:</h4>
                 <ul *ngFor="let website of member.websites" class="text-blue-300 list-disc ml-9">
-                    <li><a class="text-blue-300 text-sm cursor-pointer" [href]="website.WebURL">{{website.WebURL}}</a></li>
+                    <li><a class="text-blue-300 text-sm cursor-pointer" [href]="website.WebURL">{{website.WebURL}}</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
-<ng-template #loading>
-    <h1>Loading...</h1>
+<ng-template #fakeCard>
+    <div class="w-full flex items-center justify-center">
+    <div class="transition-all max-w-2xl w-full bg-gray-900 shadow-lg rounded-xl p-6">
+        <div class="flex flex-col ">
+            <div class="relative h-62 w-full mb-3">
+                <img src="assets/female.jpg" class="w-full object-cover rounded-2xl aspect-square">
+            </div>
+            <div class="relative flex-auto justify-evenly">
+                <div class="absolute top-2 right-2 flex flex-col gap-2">
+                    <p
+                        class="bg-green-400 text-white text-center text-xs px-2 py-1 rounded-lg"></p>
+                    <p class="text-xs text-gray-400 bg-gray-700 rounded-full px-2 py-1 m-0"></p>
+                </div>
+                <div class="flex flex-wrap ">
+                    <div class="flex flex-col gap-1 items-start w-full min-w-0 ">
+                        <h2 class="text-xl w-[100px] h-[30px] rounded-full font-semibold mr-auto bg-gray-200 truncate"></h2>
+                        <p class="text-sm w-[100px] h-[15px] rounded-full bg-gray-400"></p>
+                    </div>
+                </div>
+
+                <h4 class="text-white mt-4">Parties:</h4>
+                <div class="rounded-xl w-[400px] h-[100px] bg-gray-400/40"></div>
+
+                <h4 class="text-white mt-4">Websites:</h4>
+                <div class="rounded-xl w-[400px] h-[100px] bg-gray-400/40"></div>
+            </div>
+        </div>
+    </div>
+</div>
 </ng-template>

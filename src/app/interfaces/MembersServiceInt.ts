@@ -42,12 +42,12 @@ export interface MembersServiceInt {
      getMemberWebsites(id: number): Promise<Website[]>;
 
     /**
-     * Get the party of a member
+     * Get the parties of a member
      * 
      * @param {number} id member's ID
-     * @returns {Promise<Party | undefined>}
+     * @returns {Promise<Party[] | undefined>}
      */
-    getMemberParty(id: number): Promise<Party | undefined>;
+    getMemberPartiesOfMember(id: number): Promise<MemberParty[] | undefined>;
 
     /**
      * Get all details of a member

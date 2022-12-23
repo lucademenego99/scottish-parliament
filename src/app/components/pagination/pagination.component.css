@@ -1,0 +1,7 @@
+/* Style the button when it is disabled */
+button[disabled] {
+    background-color: gray !important;
+    color: lightgray !important;
+    cursor: default !important;
+    opacity: 0.5 !important;
+}
