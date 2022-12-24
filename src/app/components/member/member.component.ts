@@ -5,8 +5,11 @@ import { MembersService } from '../../services/members.service';
 
 @Component({
   selector: 'app-member',
-  templateUrl: './member.component.html',
-  styleUrls: ['./member.component.css']
+  template: `
+    <div>
+        <app-member-detail [member]="member"></app-member-detail>
+    </div>
+  `
 })
 export class MemberComponent {
   member: Member | undefined;

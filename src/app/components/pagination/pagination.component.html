@@ -1,5 +1,5 @@
 <!-- if pages has length 0, show fake empty cards -->
-<div *ngIf="pages.length === 0; else showCards" class="grid grid-cols-4 gap-4">
+<div *ngIf="pages.length === 0; else showCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
     <div *ngFor="let card of fakeCards"
         class="transition-all max-w-md w-full bg-gray-700/60 shadow-lg rounded-xl p-6 cursor-pointer">
         <div class="flex flex-col ">
@@ -27,7 +27,7 @@
 </div>
 <!-- if pages has length > 0, show cards -->
 <ng-template #showCards>
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div *ngFor="let page of pages[currentPage]; let i = index">
             <app-member-base [member]="page"></app-member-base>
         </div>
