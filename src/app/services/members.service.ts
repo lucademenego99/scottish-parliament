@@ -47,7 +47,6 @@ export class MembersService implements MembersServiceInt {
                 }
             });
         }
-        console.log(this.members[0]);
         return this.members;
     }
 
@@ -100,8 +99,6 @@ export class MembersService implements MembersServiceInt {
 
         const parties = await this.getMemberPartiesOfMember(id);
         member.parties = parties;
-
-        console.log("Parties:", member.parties);
 
         const websites = await this.getMemberWebsites(id);
         member.websites = websites;
