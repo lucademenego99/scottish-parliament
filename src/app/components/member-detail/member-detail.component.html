@@ -1,6 +1,6 @@
 <div *ngIf="member; else fakeCard" class="w-full flex items-center justify-center">
     <div [routerLink]="['/member', member.PersonID]"
-        class="transition-all max-w-2xl w-full bg-gray-900 shadow-lg rounded-xl p-6">
+        class="transition-all max-w-2xl w-full bg-gray-700/60 shadow-lg rounded-xl p-6">
         <div class="flex flex-col ">
             <div class="relative h-62 w-full mb-3">
                 <img src="{{member.PhotoURL ? member.PhotoURL : member.GenderTypeID == 1 ? 'assets/female.jpg' : 'assets/male.jpg'}}"
@@ -40,7 +40,7 @@
 </div>
 <ng-template #fakeCard>
     <div class="w-full flex items-center justify-center">
-    <div class="transition-all max-w-2xl w-full bg-gray-900 shadow-lg rounded-xl p-6">
+    <div class="transition-all max-w-2xl w-full bg-gray-800 shadow-2xl rounded-xl p-6">
         <div class="flex flex-col ">
             <div class="relative h-62 w-full mb-3">
                 <img src="assets/female.jpg" class="w-full object-cover rounded-2xl aspect-square">
