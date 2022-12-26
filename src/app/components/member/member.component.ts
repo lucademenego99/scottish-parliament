@@ -14,11 +14,16 @@ import { MembersService } from '../../services/members.service';
 export class MemberComponent {
   member: Member | undefined;
 
-  constructor(private _ActivatedRoute: ActivatedRoute, private membersService: MembersService) {
+  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private membersService: MembersService) {
     const id = this._ActivatedRoute.snapshot.paramMap.get('id');
 
     this.membersService.getMemberDetails(Number(id)).then((member: Member | undefined) => {
-      this.member = member;
+      if (member === undefined) {
+        // Redirect to 404 page
+        this._Router.navigate(['/404']);
+      } else {
+        this.member = member;
+      }
     });
   }
 }
