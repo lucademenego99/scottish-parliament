@@ -66,8 +66,8 @@ export class MembersService implements MembersServiceInt {
                 // Convert date strings to the appropriate format for display
                 map((response: MemberParty[]) => {
                     response.forEach((memberParty: MemberParty) => {
-                        memberParty.ValidFromDate = new Date(memberParty.ValidFromDate).toLocaleString('en-US', {month: 'long', year: 'numeric', day:'numeric'});
-                        memberParty.ValidUntilDate = new Date(memberParty.ValidUntilDate).toLocaleString('en-US', {month: 'long', year: 'numeric', day:'numeric'});
+                        memberParty.ValidFromDate = memberParty.ValidFromDate ? new Date(memberParty.ValidFromDate).toLocaleString('en-US', {month: 'long', year: 'numeric', day:'numeric'}) : "";
+                        memberParty.ValidUntilDate = memberParty.ValidUntilDate ? new Date(memberParty.ValidUntilDate).toLocaleString('en-US', {month: 'long', year: 'numeric', day:'numeric'}) : "";
                     });
                     return response;
                 })
@@ -91,8 +91,8 @@ export class MembersService implements MembersServiceInt {
                 // Convert date strings to the appropriate format for display
                 map((response: Party[]) => {
                     response.forEach((party: Party) => {
-                        party.ValidFromDate = new Date(party.ValidFromDate).toLocaleString('en-US', {month: 'long', year: 'numeric', day:'numeric'});
-                        party.ValidUntilDate = new Date(party.ValidUntilDate).toLocaleString('en-US', {month: 'long', year: 'numeric', day:'numeric'});
+                        party.ValidFromDate = party.ValidFromDate ? new Date(party.ValidFromDate).toLocaleString('en-US', {month: 'long', year: 'numeric', day:'numeric'}) : "";
+                        party.ValidUntilDate = party.ValidUntilDate ? new Date(party.ValidUntilDate).toLocaleString('en-US', {month: 'long', year: 'numeric', day:'numeric'}) : "";
                     });
                     return response;
                 })
