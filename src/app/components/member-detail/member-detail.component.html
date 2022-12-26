@@ -3,7 +3,7 @@
         class="transition-all max-w-2xl w-full bg-gray-700/60 shadow-lg rounded-xl p-6">
         <div class="flex flex-col ">
             <div class="relative h-62 w-full mb-3">
-                <img src="{{member.PhotoURL ? member.PhotoURL : member.GenderTypeID == 1 ? 'assets/female.jpg' : 'assets/male.jpg'}}"
+                <img [src]="member.PhotoURL ? member.PhotoURL : member.GenderTypeID == 1 ? 'assets/female.jpg' : 'assets/male.jpg'"
                     loading="lazy" (error)="onImageError($event)" alt="member image"
                     class="w-full object-cover rounded-2xl aspect-square">
             </div>
