@@ -40,7 +40,7 @@ export class MembersService implements MembersServiceInt {
                 // Convert date strings to the appropriate format for display
                 map((response: Member[]) => {
                     response.forEach((member: Member) => {
-                        member.BirthDate = new Date(member.BirthDate).toLocaleString('en-US', {month: 'long', year: 'numeric', day:'numeric'});
+                        member.BirthDate = member.BirthDate ? new Date(member.BirthDate).toLocaleString('en-US', {month: 'long', year: 'numeric', day:'numeric'}) : "";
                     });
                     return response;
                 })

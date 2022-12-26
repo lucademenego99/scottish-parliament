@@ -17,6 +17,9 @@ export class PaginationComponent {
   
   constructor(private membersService: MembersService) {
     this.fakeCards = new Array(this.itemsPerPage).fill(0).map((x, i) => i);
+  }
+
+  ngOnInit(): void {
     this.membersService.getMembers().then((members: Member[]) => {
       this.members = members;
       this.pages = this.getPages(this.members, this.itemsPerPage);

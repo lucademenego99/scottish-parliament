@@ -14,7 +14,9 @@ import { MembersService } from '../../services/members.service';
 export class MemberComponent {
   member: Member | undefined;
 
-  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private membersService: MembersService) {
+  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private membersService: MembersService) {}
+
+  ngOnInit(): void {
     const id = this._ActivatedRoute.snapshot.paramMap.get('id');
 
     this.membersService.getMemberDetails(Number(id)).then((member: Member | undefined) => {
