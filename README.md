@@ -17,10 +17,10 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Deployment
 
 #### Github Pages
-The project uses `angular-cli-ghpages` to deploy on Github Pages. The command used to deploy a new version is: `ng deploy --base-href=/scottish-parliament/`.
+The project uses `angular-cli-ghpages` for the deployment on Github Pages. The command used to deploy a new version is: `ng deploy --base-href=/scottish-parliament/`.
 
 #### Local Tomcat
-The project can be deployed to a local Tomcat server by using maven. Its configuration can be found in the `pom.xml` file, where some variables probably need to be updated accodingly to your configuration:
+The project can be deployed to a local Tomcat server by using maven. Its configuration can be found in the `pom.xml` file, where some variables probably need to be updated according to your configuration:
 ```
 <tomcat.base.url>http://localhost:8080</tomcat.base.url>
 <tomcat.username>admin</tomcat.username>
